@@ -25,3 +25,17 @@ This small project was oriented towards learning methods of retrieving data from
 >     new_row = [i] + ind_data
 >     df1.loc[len(df1)] = new_row
 > ```
+After converting the resulting table into _CSV_ format, I decided to explore its data using _Pandas_.
+The table contained Wikipedia references in two columns, _"Original release date"_ and _"English release date_," in the format: _[number]_. I eliminated those using regular expressions:
+```Python
+data['Original release date'] = data['Original release date'].str.replace(r'\s*\[\d+\]\s*', '', regex=True)
+data['English release date'] = data['English release date'].str.replace(r'\s*\[\d+\]\s*', '', regex=True)
+```
+Also, I converted the first _"No."_ column into _float_ data type:
+```Python
+data['No.'] = data['No.'].astype(float)
+```
+Finally, I converted the _"Original release date"_ column from _text_ into _datetime_ format. The dates transformed from their initial appearance, such as _"May 25, 2015"_ to the format _2015-05-25_.
+```Python
+data["Original release date"] = pd.to_datetime(data["Original release date"], format='%B %d, %Y')
+```
