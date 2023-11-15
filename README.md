@@ -25,7 +25,7 @@ This small project was oriented towards learning methods of retrieving data from
 >     new_row = [i] + ind_data
 >     df1.loc[len(df1)] = new_row
 > ```
-After converting the resulting table into _CSV_ format, I decided to explore its data using _Pandas_.
+After converting the resulting table into _CSV_ format, I decided to explore its data using Pandas.
 The table contained Wikipedia references in two columns, _"Original release date"_ and _"English release date_," in the format: _[number]_. I eliminated those using regular expressions:
 ```Python
 data['Original release date'] = data['Original release date'].str.replace(r'\s*\[\d+\]\s*', '', regex=True)
